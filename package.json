@@ -1,0 +1,7 @@
+{
+  "name": "pricepulse-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "uvicorn main:app --host 0.0.0.0 --port 8000"
+  }
+}
