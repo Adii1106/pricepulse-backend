@@ -7,4 +7,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Add debugging
+ENV PYTHONUNBUFFERED=1
+ENV PORT=8000
+EXPOSE ${PORT}
+
+# Use a shell script to start the application
+RUN echo "#!/bin/bash
+uvicorn main:app --host 0.0.0.0 --port \$PORT --log-level debug" > start.sh
+RUN chmod +x start.sh
+
+CMD ["./start.sh"]
