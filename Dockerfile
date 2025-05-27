@@ -13,8 +13,7 @@ ENV PORT=8000
 EXPOSE ${PORT}
 
 # Use a shell script to start the application
-RUN echo "#!/bin/bash
-uvicorn main:app --host 0.0.0.0 --port \$PORT --log-level debug" > start.sh
+RUN echo "#!/bin/bash" > start.sh
+# RUN uvicorn main:app --host 0.0.0.0 --port \$PORT --log-level debug > start.sh
 RUN chmod +x start.sh
-
-CMD ["./start.sh"]
+CMD ["/bin/bash", "start.sh"]
